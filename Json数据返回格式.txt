@@ -1,0 +1,65 @@
+相对于需要返回的Json 统一由对应的返回数据以及返回代码
+
+Json格式 统一用字符串 
+
+Type : XX
+Data : XX
+Data : XX
+Code : XX
+
+如果正常统一返回Code : 1 
+
+登录时返回的Json
+Type : 1
+Data : （成功)1/(失败)0
+Code : (用户不存在)1001/(用户名或密码错误)1002/(正常登陆)1
+
+登录时发送给服务器的字段
+jsType :json类型
+UserName:用户名
+Password:密码
+
+注册时返回的Json
+Type : 2
+Data : （成功)1/(失败)0
+Code : (用户名已存在)2001/(NickName已存在)2002/(正常注册)1
+
+注册时发送给服务器的字段
+jsType:json类型
+Email:邮箱
+userName:用户名
+password: 密码
+nickName:昵称 
+（需要查重）
+
+天赋树升级发送的字段
+jsType:json类型
+userName:用户名
+solidertype:兵种类型
+skilltype:技能类型
+
+天赋升级返回的json
+Type:5
+Data:（成功)1/(失败)0
+Code:(技能点数不够)8001/(成功升级)1
+
+结算(只单向发给服务器)
+userName:用户名
+gold:金币数
+exp:经验数
+
+	///////////////////////////////服务器失败消息		
+		case "1001":
+			return "用户名不存在";
+		
+		case "1002":
+			return "用户名或密码错误";
+		
+		case "1003":
+			return "用户名已存在";
+
+		case "1004":
+			return "昵称已存在";
+		
+		case "8001":
+			return "技能点数不够";
