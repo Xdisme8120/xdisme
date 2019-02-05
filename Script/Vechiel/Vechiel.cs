@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Vechiel : MonoBehaviour,IPunObservable {
 
@@ -9,8 +10,8 @@ public class Vechiel : MonoBehaviour,IPunObservable {
 	private Vshot shot;
 	public bool HavePeople = false;
 	public PhotonView PlayerPv;
-
-	public int Health;
+    public Slider HealthSlider;
+    public int Health;
 	public int Defence;
 	public float MoveSpeed;
 	public GameObject DeadBody;
@@ -21,6 +22,11 @@ public class Vechiel : MonoBehaviour,IPunObservable {
 	private AudioListener Al;
 	private Rigidbody Rigidbody;
 	private bool IsMove = false;
+
+    void Update()
+    {
+        HealthSlider.value = Health;
+    }
 	void Start () {
 		
 		Engine = GetComponent<AudioSource> ();

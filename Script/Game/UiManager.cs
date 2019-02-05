@@ -82,32 +82,4 @@ public class UiManager : MonoBehaviour {
 			Res [1].enabled = true;
 	}
 
-	/*public void setBronBtn()
-	{
-		if (IsBron) {
-			Al.enabled = false;
-			if (Bron.Instance.Team == 0) {
-				BronBtn [0].gameObject.SetActive (false);
-				BronBtn [1].gameObject.SetActive (false);
-				BronBtn [2].gameObject.SetActive (false);
-			} else {
-				BronBtn [3].gameObject.SetActive (false);
-				BronBtn [4].gameObject.SetActive (false);
-				BronBtn [5].gameObject.SetActive (false);	
-			}
-			IsBron = false;
-		} else {
-			Al.enabled = true;
-			if (Bron.Instance.Team == 0) {
-				BronBtn [0].gameObject.SetActive (true);
-				BronBtn [1].gameObject.SetActive (true);
-				BronBtn [2].gameObject.SetActive (true);
-			} else {
-				BronBtn [3].gameObject.SetActive (true);
-				BronBtn [4].gameObject.SetActive (true);
-				BronBtn [5].gameObject.SetActive (true);	
-			}
-			IsBron = true;
-		}
-	}*/
 }

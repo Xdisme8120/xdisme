@@ -9,7 +9,7 @@ public class PlayerSetUp : MonoBehaviour,IPunObservable {
 	public GameObject[] NeedDisable2;
 
 	void Start () {
-		text.text = PhotonNetwork.player.NickName;
+		text.text = PlayerPrefs.GetString("nickname","unnamed");
 		if (!GetComponent<PhotonView> ().isMine) 
 		{
 			foreach (Behaviour B in NeedDisable)

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using LitJson;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 public class LobbyUimanager : MonoBehaviour {
@@ -12,6 +14,11 @@ public class LobbyUimanager : MonoBehaviour {
 	{
 		get{ return _instance;}
 	}
+
+    public Text nickname;
+    public Text level;
+    public Text exp;
+    public Text gold;
 
 	void Awake()
 	{
@@ -27,6 +34,27 @@ public class LobbyUimanager : MonoBehaviour {
 		
 	}
 
+    public void RefreshInfo()
+    {
+        string path = Application.persistentDataPath + "/user.json";
+        StreamReader sr = new StreamReader(path);
+        string jsonStr = sr.ReadToEnd();
+        JsonData json = JsonMapper.ToObject(jsonStr);
+        //        Debug.Log("level:" + json["data"]["uLevel"].ToString());
+        //        Debug.Log("jsonStr:"+jsonStr);
+        PlayerPrefs.SetString("account", json["data"]["username"].ToString());
+        if (json["data"]["uNickname"] != null)
+        {
+            nickname.text = json["data"]["uNickname"].ToString();
+            PlayerPrefs.SetString("nickname", nickname.text);
+        }
+        if(json["data"]["uLevel"] != null)
+        level.text = json["data"]["uLevel"].ToString();
+        if (json["data"]["uExp"] != null)
+            exp.text = json["data"]["uExp"].ToString();
+        if (json["data"]["uGold"] != null)
+            gold.text = json["data"]["uGold"].ToString();
+    }
 	public void GetRoomInfo()
 	{
 		Rooms = PhotonNetwork.GetRoomList ();

@@ -17,28 +17,33 @@ public class LobbyUiControl : MonoBehaviour {
 	public GameObject SoundPanel;
 	public GameObject EffectPanel;
 
+    public InputField userField;
 	public Text Message;
 	public GameObject MessageBox;
 
-
+    
 	public MenuAnimator Ma;
 
-	void Awake()
+
+	void Start()
 	{
 		_instace = this;
 	}
 
-
-
 	public void StartGame()
 	{
 		ChangePanel (LoginPanel, StartPanel);
-		Ma.StartGame ();
-	}
 
-	public void FinishLOgin()
+		Ma.StartGame ();
+	    userField.text = PlayerPrefs.GetString("account", "");
+
+    }
+
+    public void FinishLOgin()
 	{
 		ChangePanel (MainPanel,LoginPanel);
+        LobbyUimanager.Instance.RefreshInfo();
+		ShowMessage ("登录成功");
 		Ma.FinishLogin ();
 	}
 
@@ -50,8 +55,9 @@ public class LobbyUiControl : MonoBehaviour {
 
 	public void FinishRegister()
 	{
-		ChangePanel (RegisertPanel, LoginPanel);
-		Ma.FinishRegister ();
+		ChangePanel (LoginPanel, RegisertPanel);
+        Ma.FinishRegister ();
+        
 	}
 
 	public void LogOut()
